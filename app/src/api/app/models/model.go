@@ -22,6 +22,9 @@ type File struct {
 }
 
 type FileServiceInterface interface {
-	CreateFile(f *File) error
-	GetFile(id string) (*File, error)
+	CreateFileInDB(f *File) error
+	CreateFileInDrive(f *File) (string, error)
+	SearchInDB(id string) (*File, error)
+	SearchInDrive(id string) (*File, error)
+	RetrieveAllFilesFromDrive()
 }

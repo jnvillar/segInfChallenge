@@ -15,9 +15,11 @@ type ItemService struct {
 func (s *ItemService) Item(id string) (*models.Item, error) {
 	var i models.Item
 	row := s.DB.QueryRow(`SELECT id, name, description FROM items WHERE id = ?`, id)
+
 	if err := row.Scan(&i.ID, &i.Name, &i.Description); err != nil {
 		return nil, err
 	}
+
 	return &i, nil
 }
 

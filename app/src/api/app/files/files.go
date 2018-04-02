@@ -13,7 +13,8 @@ var (
 func Configure(r *gin.Engine, db *sql.DB) {
 	Is = &FilesService{DB: db}
 
-	r.GET("/search-in-doc/:id", Search)
-	r.POST("/file", Create)
-	r.GET("/file/:id", Get)
+	r.GET("/search-in-doc/:id", GetFileFromDrive)
+	r.GET("/showAll", GetAllFilesFromDrive)
+	r.GET("/file/:id", GetFileFromDB)
+	r.POST("/file", PostFile)
 }

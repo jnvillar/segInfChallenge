@@ -1,5 +1,18 @@
 version: '3'
 services:
+  db:
+    image: "mysql:5.7"
+    container_name: db
+    ports:
+      - "3306"
+    networks:
+      - dbNetWork
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpwd
+      - MYSQL_DATABASE=db
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=userpwd
+
   nginx:
     build: nginx
     ports:
@@ -13,5 +26,10 @@ services:
       - "8080"
     networks:
       - nginx
+      - dbNetWork
+    links:
+      - db
+
 networks:
   nginx:
+  dbNetWork:
