@@ -12,6 +12,7 @@ import (
 	// Needed to sql lite 3
 	_ "github.com/mattn/go-sqlite3"
 	"fmt"
+	"io/ioutil"
 )
 
 var (
@@ -49,24 +50,15 @@ func configDataBase() *sql.DB {
 			continue
 		}
 		// This is bad practice... You should create a schema.sql with all the definitions
-		itemsQuery := `
-			CREATE TABLE IF NOT EXISTS items (
-				id int NOT NULL AUTO_INCREMENT,
-				name varchar(255),
-				description varchar(255),
-				PRIMARY KEY (id)
-			);`
+		itemsQuery, err := ioutil.ReadFile("./src/api/items.sql")
+		if err != nil {panic("Could not read items.sql")}
 
-		filesQuery := `
-				CREATE TABLE IF NOT EXISTS files(
-					id varchar(500) NOT NULL,
-					title varchar(500),
-					description varchar(500),
-					PRIMARY KEY (id)
-				);`
+		filesQuery , err := ioutil.ReadFile("./src/api/files.sql")
+		if err != nil {panic("Could not read files.sql")}
 
-		createTable(db, itemsQuery)
-		createTable(db, filesQuery)
+		createTable(db, string(itemsQuery))
+		createTable(db, string(filesQuery))
+		
 		return db
 	}
 
