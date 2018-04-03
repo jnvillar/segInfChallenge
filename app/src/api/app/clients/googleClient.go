@@ -45,7 +45,7 @@ func getTokenFromWeb(config *oauth2.Config) *oauth2.Token {
 	fmt.Printf("Go to the following link in your browser then type the "+
 		"authorization code: \n%v\n", authURL)
 
-	code := "4/AAAUuo7-2vz6y5bRR-bv2drC5jADDDqSZb7ENoSTnalji1AtnPxcZ2I"
+	code := "4/AAAqximP8qSClqamcfl37IM2n9N9Op6noy0lMH8oWww8Q3Twf_sUV00"
 
 	tok, err := config.Exchange(oauth2.NoContext, code)
 	if err != nil {

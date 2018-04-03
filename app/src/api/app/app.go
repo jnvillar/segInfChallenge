@@ -49,7 +49,7 @@ func configDataBase() *sql.DB {
 			time.Sleep(1 * time.Second)
 			continue
 		}
-		// This is bad practice... You should create a schema.sql with all the definitions
+
 		itemsQuery, err := ioutil.ReadFile("./src/api/items.sql")
 		if err != nil {panic("Could not read items.sql")}
 
@@ -58,7 +58,7 @@ func configDataBase() *sql.DB {
 
 		createTable(db, string(itemsQuery))
 		createTable(db, string(filesQuery))
-		
+
 		return db
 	}
 

@@ -30,7 +30,6 @@ func GetFileFromDrive(c *gin.Context) {
 	} else {
 		c.JSON(404, gin.H{"error": "word not found", "content": file.Description})
 	}
-
 	return
 }
 
@@ -44,12 +43,13 @@ func GetFileFromDB(c *gin.Context) {
 	}
 
 	file, err := Is.SearchInDB(fileId)
+
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "find_error", "description": err.Error()})
 		return
 	}
+
 	c.JSON(200, file)
-	return
 }
 
 // Post item in drive ...
@@ -61,10 +61,15 @@ func PostFile(c *gin.Context) {
 		return
 	}
 
+	if file.Description == "" || file.Title == "" {
+		c.JSON(400, gin.H{"error": "wrong parameters"})
+		return
+	}
+
 	id, err := Is.CreateFileInDrive(file)
 
 	if err != nil {
-		c.JSON(500, gin.H{"error": "post in drive error", "description": err.Error()})
+		c.JSON(500, gin.H{"error": "error while posting file in drive", "description": err.Error()})
 		return
 	}
 
@@ -76,5 +81,5 @@ func PostFile(c *gin.Context) {
 		return
 	}
 
-	c.JSON(201, file)
+	c.JSON(200, file)
 }

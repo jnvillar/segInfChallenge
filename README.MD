@@ -10,17 +10,17 @@ La herramienta desarrollada permite la creación y consulta (mediante llamados t
 Los Items son objetos que se pueden crear mediante un POST a la app. El lamado debe constar con los siguientes parametros:
 
 - ID
+- Name
 - Descripción
 
-Son almacenados en una base MySql de manera local. Se pueden consultar los objetos creados mediante llamados de tipo GET
+Los Items almacenados en una base MySql de manera local. Se pueden consultar los objetos creados mediante llamados de tipo GET
 
 # Files
 Al igual que los Items, son objetos que se pueden crear mediante un POST a la app. El lamado debe constar con los siguientes parametros:
-- ID
 - Name
 - Descripcion
 
-Son almacenados en la nube, utilizando el servicio que brinda Google Drive. La herramienta almacena localmente el Id que posee el archivo en drive.
+Los Files son almacenados en la nube, utilizando el servicio que brinda Google Drive. La herramienta almacena localmente el Id que posee el archivo en drive. (El mismo se obtiene al crear el archivo en Drive)
 
 Dado un Id de un archivo creado en Drive, se puede consultar si el mismo contiene en su descripcion una palabra pasada por parametro
 
